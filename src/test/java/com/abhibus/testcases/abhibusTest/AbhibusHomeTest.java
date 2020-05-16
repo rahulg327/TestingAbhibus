@@ -29,7 +29,8 @@ public class AbhibusHomeTest extends AbhibusHomePage {
     selectLeavingDate("20", "5", "2020");
     clickSearchButton();
     WebDriverWait wait = new WebDriverWait(browser, 20);
-
-    Assert.assertTrue(wait.until(ExpectedConditions.visibilityOf(modifySearch)).isDisplayed());
+    By modifySearch = By.xpath("//a[text()='Modify Search']");
+    Assert.assertTrue(
+        wait.until(ExpectedConditions.visibilityOfElementLocated(modifySearch)).isDisplayed());
   }
 }

@@ -8,18 +8,18 @@ import org.testng.annotations.BeforeTest;
 
 public class TestRunner extends DriverManager {
 
-    AbhibusHomePage abhibusHomePage;
+  AbhibusHomePage abhibusHomePage;
 
-    @BeforeTest
-    public void launchAbhibus() {
-        getBrowser();
-        abhibusHomePage = new AbhibusHomePage();
-        wait = new WebDriverWait(browser, 20);
-        abhibusHomePage.loadAbhibus();
-    }
+  @BeforeTest
+  public void launchAbhibus() {
+    getBrowser();
+    abhibusHomePage = new AbhibusHomePage();
+    wait = new WebDriverWait(browser, 20);
+    abhibusHomePage.loadAbhibus();
+  }
 
-    @AfterTest
-    public void tearTest() {
-        closeAllBrowsers();
-    }
+  @AfterTest
+  public void tearTest() {
+    closeAllBrowsers();
+  }
 }

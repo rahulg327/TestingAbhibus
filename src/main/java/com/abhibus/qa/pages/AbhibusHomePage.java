@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,9 +15,6 @@ import java.util.concurrent.TimeUnit;
 public class AbhibusHomePage extends TestBase {
 
   final Logger log = LoggerFactory.getLogger(this.getClass());
-
-  @FindBy(xpath = "//a[text()='Modify Search']")
-  public WebElement modifySearch;
 
   @FindBy(xpath = "//img[@alt='abhibus.com']")
   static WebElement homePage;
@@ -86,8 +82,6 @@ public class AbhibusHomePage extends TestBase {
     JavascriptExecutor executor = (JavascriptExecutor) browser;
     String selectDateMonthYear =
         "//a[text()='%s']/parent::td[@data-month='%s' and @data-year='%s']";
-//    wait = new WebDriverWait(browser, 20);
-
     WebElement createElement =
         wait.until(
             ExpectedConditions.visibilityOfElementLocated(
