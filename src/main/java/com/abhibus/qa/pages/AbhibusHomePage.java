@@ -10,6 +10,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.text.DateFormatter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 public class AbhibusHomePage extends TestBase {
@@ -31,11 +34,20 @@ public class AbhibusHomePage extends TestBase {
   @FindBy(xpath = "//a[text()='Search']")
   static WebElement btnSearch;
 
+  @FindBy(xpath = "//div[@class='dragon']")
+  static WebElement abhiChat;
+
+  @FindBy(xpath = "//div[@class='apsrtc-logo']")
+  static WebElement apsrtcLogo;
+
+  @FindBy(xpath = "//h1[text()='Abhi BOT - 24x7 Chat Support']")
+  static WebElement chatHoverText;
+
   @FindBy(xpath = "//button[text()='Later']")
-  private WebElement btnLater;
+  public WebElement btnLater;
 
   @FindBy(xpath = "//button[@class='popup-close']")
-  private WebElement msgPopup;
+  public WebElement msgPopup;
 
   private String suggestions = "//li[text()='%s']";
 
@@ -50,11 +62,10 @@ public class AbhibusHomePage extends TestBase {
   }
 
   public void closePopMessages() {
-    waitForElementToDisplay(msgPopup);
-    if (msgPopup.isDisplayed()) {
+    try {
+     if (msgPopup.isDisplayed()) {
       waitForElementAndClick(msgPopup);
     }
-    try {
       btnLater.isDisplayed();
       waitForElementAndClick(btnLater);
     } catch (Exception e) {
@@ -77,6 +88,10 @@ public class AbhibusHomePage extends TestBase {
     waitAndClick(String.format(suggestions, value));
   }
 
+  public void selectLeavingDate(String date){
+    journeyStartDate.sendKeys(date);
+  }
+
   public void selectLeavingDate(String date, String month, String year) {
     journeyStartDate.click();
     JavascriptExecutor executor = (JavascriptExecutor) browser;
@@ -92,4 +107,25 @@ public class AbhibusHomePage extends TestBase {
   public void clickSearchButton() {
     btnSearch.click();
   }
+
+  public String verifyChatHoverText() throws InterruptedException {
+    hoverOnElement(abhiChat);
+    return chatHoverText.getText();
+  }
+
+  public String getCurrentDate(String pattern) {
+    LocalDateTime date = LocalDateTime.now();
+    return date.format(DateTimeFormatter.ofPattern(pattern));
+  }
+
+  public String getDesiredDate(String pattern, String desiredTime, int days) {
+    LocalDateTime date = LocalDateTime.now();
+    if (desiredTime.equals("Past")) {
+      date = date.minusDays(days);
+      return date.format(DateTimeFormatter.ofPattern(pattern));
+    } else {
+      date = date.plusDays(days);
+      return date.format(DateTimeFormatter.ofPattern(pattern));
+    }
+    }
 }

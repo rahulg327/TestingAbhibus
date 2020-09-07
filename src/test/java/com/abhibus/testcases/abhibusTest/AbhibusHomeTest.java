@@ -26,11 +26,17 @@ public class AbhibusHomeTest extends AbhibusHomePage {
   public void validateSearch() {
     enterLeaving("Pune");
     enterDestination("Bangalore");
-    selectLeavingDate("20", "5", "2020");
+    selectLeavingDate("20", "9", "2020");
     clickSearchButton();
     WebDriverWait wait = new WebDriverWait(browser, 20);
     By modifySearch = By.xpath("//a[text()='Modify Search']");
     Assert.assertTrue(
         wait.until(ExpectedConditions.visibilityOfElementLocated(modifySearch)).isDisplayed());
+  }
+
+  @Test
+  public void validateAbhiChatMessage() throws InterruptedException {
+    String expectedText = "Abhi BOT - 24x7 Chat Support";
+    org.testng.Assert.assertEquals(verifyChatHoverText(), expectedText);
   }
 }
