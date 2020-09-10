@@ -4,7 +4,6 @@ import com.abhibus.qa.pages.AbhibusHomePage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 public class AbhibusHomeTest extends AbhibusHomePage {
@@ -28,13 +27,12 @@ public class AbhibusHomeTest extends AbhibusHomePage {
     enterDestination("Bangalore");
     selectLeavingDate("20", "9", "2020");
     clickSearchButton();
-    WebDriverWait wait = new WebDriverWait(browser, 20);
     By modifySearch = By.xpath("//a[text()='Modify Search']");
     Assert.assertTrue(
         wait.until(ExpectedConditions.visibilityOfElementLocated(modifySearch)).isDisplayed());
   }
 
-  @Test
+  @Test(priority = 4)
   public void validateAbhiChatMessage() throws InterruptedException {
     String expectedText = "Abhi BOT - 24x7 Chat Support";
     org.testng.Assert.assertEquals(verifyChatHoverText(), expectedText);

@@ -1,7 +1,3 @@
-/*
- * @autor : Naveen Khunteta
- * 
- */
 package com.abhibus.qa.utilities.ExtentReportListener;
 
 import com.relevantcodes.extentreports.ExtentReports;

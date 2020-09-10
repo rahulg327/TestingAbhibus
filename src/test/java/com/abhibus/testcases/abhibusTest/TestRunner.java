@@ -10,7 +10,7 @@ public class TestRunner extends DriverManager {
 
   AbhibusHomePage abhibusHomePage;
 
-  @BeforeTest
+/*  @BeforeTest
   public void launchAbhibus() {
     getBrowser();
     abhibusHomePage = new AbhibusHomePage();
@@ -21,5 +21,5 @@ public class TestRunner extends DriverManager {
   @AfterTest
   public void tearTest() {
     closeAllBrowsers();
-  }
+  }*/
 }
