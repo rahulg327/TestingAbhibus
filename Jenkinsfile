@@ -7,21 +7,14 @@ node {
     testerId = "jenkins"
     testerName = "jenkins"
 
-    stage('Set Build Display Name') {
-        currentBuild.displayName = "#${BUILD_NUMBER}-REGRESSION"
-        echo "Building the Code.........."
-    }
 
     stage('Checkout Source Code') {
         git changelog: false, url: 'https://github.com/rahulg327/TestingAbhibus.git', branch: '${BRANCH}'
     }
 
-    stage('build user') {
-        echo "build user.........."
-    }
     try {
         stage('Compile and Execute Tests') {
-            MVN_BUILD_CMD = "${env.M3}/bin/mvn clean -DEnvironment=${env.ENVIRONMENT} -DHostName=${env.HOSTNAME} -DBrowserName=${env.BROWSER_TYPE} -DDriverType=${env.DRIVER_TYPE} -DRallyUpdate=${env.RALLY_UPDATE} -DTestSet=${env.TEST_SET} -DTesterId=${testerId} -DBuildTag=\"${env.BUILD_TAG}\" test"
+            MVN_BUILD_CMD = "${env.M3}/bin/mvn clean -DHostName=${env.HOSTNAME} -DBrowserName=${env.BROWSER_TYPE} -DBuildTag=\"${env.BUILD_TAG}\" test"
             echo "MVN_CMD=${MVN_BUILD_CMD}"
             echo "HOSTNAME=${HOSTNAME}"
             sh MVN_BUILD_CMD
