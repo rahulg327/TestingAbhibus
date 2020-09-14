@@ -11,7 +11,7 @@ public class PropertiesUtil {
 
   private static final Logger log = LoggerFactory.getLogger(PropertiesUtil.class);
 
-  public static String getDriverPropertyValue(String propertyName) {
+  public static String getEnvironmentPropertyValue(String propertyName) {
     String propertyValue =
         getValueFromPropertiesFile("properties/" + "environment.properties", propertyName);
     if (propertyValue == null) {

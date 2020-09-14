@@ -1,6 +1,7 @@
 package com.abhibus.qa.pages;
 
 import com.abhibus.qa.config.TestBase;
+import com.abhibus.qa.utilities.PropertiesUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -10,10 +11,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.text.DateFormatter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
+
+import static com.abhibus.qa.utilities.Constants.IMPLICIT_WAIT;
+import static com.abhibus.qa.utilities.Constants.URL_NAME;
 
 public class AbhibusHomePage extends TestBase {
 
@@ -56,8 +59,8 @@ public class AbhibusHomePage extends TestBase {
   }
 
   public void loadAbhibus() {
-    browser.get(getUrl("abhibus"));
-    browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    browser.get(PropertiesUtil.getEnvironmentPropertyValue(URL_NAME));
+    browser.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
     closePopMessages();
   }
 
